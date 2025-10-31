@@ -1,2 +1,103 @@
-# Attendance-through-AI
-This project is related to  solving the class attandance problem through AI and this project will save the precious time for the teacher and students.
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>College Attendance — Prototype with Login</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+  <!-- LOGIN / SIGNUP SCREEN -->
+  <div id="loginScreen">
+    <h2 id="formTitle">Sign In</h2>
+    <div id="errorMsg"></div>
+    <input type="text" id="usernameInput" placeholder="Username" autocomplete="username" />
+    <input type="password" id="passwordInput" placeholder="Password" autocomplete="current-password" />
+    <button id="submitLogin">Sign In</button>
+    <div id="toggleLoginSignUp">Don't have an account? Sign Up</div>
+  </div>
+
+  <!-- MAIN APP (hidden initially) -->
+  <div id="appContainer" class="hidden">
+    <div class="container">
+      <header>
+        <h1>College Attendance — Prototype</h1>
+        <div class="muted"></div>
+        <button id="logoutBtn" style="background:#b91c1c; font-size:12px; padding:6px 12px; border-radius:8px; border:none; cursor:pointer;">Logout</button>
+      </header>
+
+      <div class="grid">
+        <main class="card">
+          <section>
+            <h3>Camera</h3>
+            <video id="video" playsinline muted></video>
+            <div class="controls">
+              <button id="startBtn">Start Camera</button>
+              <button class="secondary" id="stopBtn">Stop Camera</button>
+              <button id="captureBtn">Capture Snapshot</button>
+              <button id="recognizeBtn">Recognize (Naive)</button>
+              <div id="status" class="muted" style="margin-left:auto;">Status: idle</div>
+            </div>
+
+            <div style="display:flex; gap: 12px; margin-top: 12px;">
+              <div style="flex:1;">
+                <label for="snapshot">Snapshot</label>
+                <img id="snapshot" class="snapshot" alt="No snapshot" />
+              </div>
+            </div>
+          </section>
+
+          <hr style="margin: 14px 0" />
+
+          <section>
+            <h3>Attendance Log</h3>
+            <div style="max-height: 260px; overflow:auto;">
+              <table id="attendanceTable">
+                <thead>
+                  <tr><th>ID</th><th>Name</th><th>Time</th><th>Method</th></tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <div style="margin-top: 10px; display:flex; gap: 8px;">
+              <button id="exportCSV">Export CSV</button>
+              <button id="clearAttendance" class="secondary small">Clear Attendance</button>
+            </div>
+          </section>
+        </main>
+
+        <aside class="card">
+          <section>
+            <h3>Student Database</h3>
+            <div style="display:flex; gap: 8px; margin-top: 8px;">
+              <input id="studentName" placeholder="Name" style="flex:1" />
+              <input id="studentId" placeholder="ID" style="width: 100px;" />
+            </div>
+            <div style="margin-top: 8px; display:flex; gap: 8px;">
+              <button id="addStudentBtn">Add (Placeholder Image)</button>
+              <button id="createStudentBtn" class="secondary small">Create (Upload Image Later)</button>
+            </div>
+            <div style="margin-top: 10px;">
+              <label for="importStudents" class="muted">Import / Export Students (.json)</label>
+              <div style="display:flex; gap: 8px; margin-top: 6px;">
+                <input type="file" id="importStudents" accept=".json" />
+                <button id="exportStudentsBtn" class="small">Export</button>
+              </div>
+            </div>
+
+            <hr style="margin: 12px 0" />
+
+            <div id="studentsList" style="max-height: 360px; overflow:auto;"></div>
+
+            <div class="footer-note" style="margin-top: 10px;">
+              Privacy: Collect student consent before using the camera. This is a demo only.
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script src="index.js"></script>
